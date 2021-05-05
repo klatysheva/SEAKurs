@@ -82,7 +82,6 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
     }
 
     public Person get(int i) {
-
         if ((i >= 0) && (i < persons.length)) {
             //System.out.println(persons[i]);
             return (Person) persons[i];
