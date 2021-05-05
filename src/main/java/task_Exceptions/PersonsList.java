@@ -86,8 +86,9 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
             //System.out.println(persons[i]);
             return (Person) persons[i];
         }
-        System.out.println("Wrong index. Index must be in the range from 0 to " + (persons.length));
-        return null;
+        else {
+            throw new RuntimeException("Wrong index. Index must be in the range from 0 to " + (persons.length));
+        }
     }
 
     public boolean remove (Object obj) {
