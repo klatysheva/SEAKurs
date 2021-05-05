@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85e24375-139d-49c7-912f-2ef9ef67a8f7" name="Default Changelist" comment="" />
+    <list default="true" id="85e24375-139d-49c7-912f-2ef9ef67a8f7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/task_Exceptions/PersonsList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task_Exceptions/PersonsList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/task_Exceptions/Test_Exceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task_Exceptions/Test_Exceptions.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +65,7 @@
       <recent name="utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ListTest">
+  <component name="RunManager" selected="Application.Test_Exceptions">
     <configuration name="ClassWork" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="exceptions.ClassWork" />
       <module name="SEA" />
@@ -89,12 +92,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Movies_V2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Quests.Quest856.Movies_V2" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="task_Listeners.Listeners_example.Test" />
       <module name="SEA" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Quests.Quest856.*" />
+          <option name="PATTERN" value="task_Listeners.Listeners_example.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -102,12 +105,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="task_Listeners.Listeners_example.Test" />
-      <module name="SEA" />
+    <configuration name="Test_Exceptions" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="task_Exceptions.Test_Exceptions" />
+      <module name="SEAKurs" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="task_Listeners.Listeners_example.*" />
+          <option name="PATTERN" value="task_Exceptions.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -130,11 +133,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test_Exceptions" />
         <item itemvalue="Application.ListTest" />
         <item itemvalue="Application.ClassWork" />
         <item itemvalue="Application.Test_Listeners" />
         <item itemvalue="Application.Test" />
-        <item itemvalue="Application.Movies_V2" />
       </list>
     </recent_temporary>
   </component>
