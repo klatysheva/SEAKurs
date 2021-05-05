@@ -22,7 +22,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>arrays.Test</mainClass>
+                            <mainClass>archive.arrays.Test</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
