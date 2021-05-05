@@ -1,4 +1,6 @@
 /.metadata/
-/.idea/
-/target/
-/out/
+.idea/
+target/
+out/
+.idea/workspace.xml
+.gitignore
