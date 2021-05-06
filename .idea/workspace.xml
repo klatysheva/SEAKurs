@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85e24375-139d-49c7-912f-2ef9ef67a8f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/WrongIndexException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/classwork/exceptions/SomeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/classwork/exceptions/SomeObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/classwork/exceptions/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/classwork/exceptions/UseObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/IList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/IList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/MyOwnException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/BaseObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/BaseObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/SeminarApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/SeminarApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/Test_Exceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/Test_Exceptions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +48,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">

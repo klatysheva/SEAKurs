@@ -1,6 +1,6 @@
 package de.telekom.sea;
 
-public class BaseObject {
+public class BaseObject extends Child {
 
     private Object parent;
     private long id;

@@ -1,27 +1,24 @@
 package de.telekom.sea;
 
-public class SeminarApp extends Child {
-    //private static SeminarApp thisSeminarApp;
+import java.util.ArrayList;
 
-    public void run (String[] args, String personName, String personSurname) {
-        Person person = new Person(personName, personSurname);
-        System.out.println("Hello, " + person.getName() + "!");
-        //test(person);
-    }
+public class SeminarApp extends BaseObject {
 
-    //just to check references
-    private void test(Person person) {
-        System.out.println("##### tests #####");
-        person.setParent(this);
-        System.out.println("SeminarApp: " + this);
-        System.out.println("getParent: " + getParent());
-        System.out.println("Person: " + person);
-        System.out.println("Parent (for SeminarApp): " + this.getParent());
-        System.out.println("Parent (for person): " + person.getParent());
-        System.out.println("This: " + this);
-        this.setParent(new Person());
-        System.out.println("getParent (this): " + this.getParent());
-        System.out.println("getParent (person): " + person.getParent());
+    public void run (PersonsList list, ArrayList<IEventListener> listenerList) {
+        //for test only:
+        Person person1 = new Person("Antony", "Walker");
+        list.add(person1);
+
+        try (PersonsMenu menu = new PersonsMenu(list)) {
+            for (IEventListener e : listenerList) {
+                list.subscribe(e);
+            }
+            menu.selectOption();
+            list.unsubscribeAll();
+            //for test only:
+            menu.selectOption();
+        }
+
     }
 
     public Object getRootApp () { //if add 'static' -> doesn't work; class doesn't have instances, then uncomment #4; return thisSeminarApp
