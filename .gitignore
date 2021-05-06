@@ -1,7 +1,7 @@
 /.metadata/
-.idea/
-target/
-out/
-.idea/workspace.xml
-src/main/java/archive
+/.idea/
+/target/
+/out/
+SEAKurs.iml
+/src/main/java/archive/
 .gitignore
