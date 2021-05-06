@@ -6,6 +6,12 @@ import java.util.Scanner;
 public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Closeable {
     private IList list;
     Scanner scanner = new Scanner(System.in);
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_GREY = "\u001B[37m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_BLUE = "\u001B[34m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
 
     public PersonsMenu(IList list) {
         this.list = list;
@@ -26,18 +32,26 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
     }
 
     public void showMenu() {
-        System.out.println("Select option:");
-        if (!list.isFull()) {
+        System.out.println(ANSI_BLUE + "Select option:" + ANSI_GREEN);
+        if (list.isFull()) {
+            System.out.println(ANSI_GREY + "1 - (NOT ACTIVE) input person" + ANSI_GREEN);
+        }
+        else {
             System.out.println("1 - input person");
         }
         System.out.println("2 - show occupied places");
         System.out.println("3 - show free places");
-        if (!list.isEmpty()) {
+        if (list.isEmpty()) {
+            System.out.println(ANSI_GREY + "4 - (NOT ACTIVE) remove person by its index or name&surname");
+            System.out.println("5 - (NOT ACTIVE) remove all" + ANSI_GREEN);
+        }
+        else {
             System.out.println("4 - remove person by its index or name&surname");
             System.out.println("5 - remove all");
         }
         System.out.println("6 - list all persons");
         System.out.println("0 - exit");
+        System.out.println(ANSI_RESET);
 
     }
 
