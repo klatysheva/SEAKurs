@@ -6,9 +6,17 @@ public class Test_Exceptions {
         Person person2 = new Person("Alex", "Anderson");
 
         PersonsList list1 = new PersonsList(2); //implements IList, IEventRegistration
-        System.out.println(list1.get(0));
-        System.out.println(list1.get(-1));
-        System.out.println(list1.get(3));
+
+        IEventListener eventListener = new PersonsMenu(list1); //implements IMenu, IEventListener
+
+        list1.subscribe(eventListener); //IEventRegistration
+        list1.add(person1);
+
+        try (PersonsMenu menu = new PersonsMenu(list1)) {
+            menu.showList();
+            menu.selectOption();
+        }
 
     }
+
 }

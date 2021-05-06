@@ -10,7 +10,7 @@ public interface IList {
     void clear();
 
     //works when 0 < i <= archive.objects count
-    Person get (int i);
+    Person get (int i) throws WrongIndexException;
 
     /* i: index of element
     removes the element at the specified position in this list */
