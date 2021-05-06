@@ -1,21 +1,18 @@
 package de.telekom.sea;
 
+import java.util.ArrayList;
+
 public class Test_Exceptions {
     public static void main(String[] args) {
-        Person person1 = new Person("Antony", "Walker");
-        Person person2 = new Person("Alex", "Anderson");
+        PersonsList personsList = new PersonsList(2);
+        SeminarApp app = new SeminarApp();
+        ArrayList<IEventListener> listenerList = new ArrayList();
+        IEventListener eventListener = new PersonsMenu(personsList);
+        IEventListener eventListener2 = new PersonsMenu(personsList);
+        listenerList.add(eventListener);
+        listenerList.add(eventListener2);
 
-        PersonsList list1 = new PersonsList(2); //implements IList, IEventRegistration
-
-        IEventListener eventListener = new PersonsMenu(list1); //implements IMenu, IEventListener
-
-        list1.subscribe(eventListener); //IEventRegistration
-        list1.add(person1);
-
-        try (PersonsMenu menu = new PersonsMenu(list1)) {
-            menu.showList();
-            menu.selectOption();
-        }
+        app.run(personsList, listenerList);
 
     }
 

@@ -1,9 +1,11 @@
 package de.telekom.sea;
 
+import java.util.ArrayList;
+
 public class PersonsList extends BaseObject implements IList, IEventRegistration {
     private int LENGTH;
     private Object[] persons;
-    private IEventListener eventListener = null;
+    private ArrayList<IEventListener> listenerList = new ArrayList();
 
     public PersonsList(int length) {
         this.LENGTH = length;
@@ -15,7 +17,12 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
     }
 
     public void subscribe(IEventListener eventListener){
-        this.eventListener = eventListener;
+        listenerList.add(eventListener);
+        //this.eventListener = eventListener;
+    }
+
+    public void unsubscribeAll(){
+        listenerList.clear();
     }
 
     public boolean add (Object obj) {
@@ -42,10 +49,7 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
         }
         if (size() < persons.length ) {
             persons [size()] = person;
-            receiveEvent("personAdded", person.getSurname() + " " + person.getName()  + " added to the list under #" + size() + ".");
-            if (isFull()) {
-                receiveEvent("listIsFull", "List is full.");
-            }
+            sendEvent("personAdded", person.getSurname() + " " + person.getName()  + " added to the list under #" + size() + ".");
             return true;
         }
         return false;
@@ -72,7 +76,7 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
             return;
         }
         persons = new Person[LENGTH];
-        receiveEvent("listIsEmpty","All elements are removed from the list.");
+        sendEvent("listIsEmpty","All elements are removed from the list.");
         isEmpty();
         //this.eventListener.receive(null);
     }
@@ -90,11 +94,11 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
     public boolean remove (Object obj) {
         System.out.println("############### Delete person ######################");
         if (obj == null) {
-            receiveEvent("objectIsNull", "It's null. Can't be deleted.");
+            sendEvent("objectIsNull", "It's null. Can't be deleted.");
             return false;
         }
         if (!(obj instanceof Person)) {
-            receiveEvent("objectOfAnotherClass", "Can't find this object in the list, it's not a person. It shouldn't be in the list. It's a person list!");
+            sendEvent("objectOfAnotherClass", "Can't find this object in the list, it's not a person. It shouldn't be in the list. It's a person list!");
             return false;
         }
         Person person = (Person) obj;
@@ -105,25 +109,26 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
                     persons [j] = persons [j+1];
                 }
                 persons [persons.length-1] = null;
-                receiveEvent("personDeleted", "Element # " + i + " was deleted from the list (" + person.getName() + " " + person.getSurname() + ").");
+                sendEvent("personDeleted", "Element # " + i + " was deleted from the list (" + person.getName() + " " + person.getSurname() + ").");
                 return true;
             }
         }
-        receiveEvent("personNotFound","Can't be deleted. " + person.getName() + " " + person.getSurname() + "is not found in the list.");
+        sendEvent("personNotFound","Can't be deleted. " + person.getName() + " " + person.getSurname() + "is not found in the list.");
+
         return false;
     }
 
-    private void receiveEvent(String eventName, String eventDescription) {
+    private void sendEvent(String eventName, String eventDescription) {
         Event event = new Event(eventName, eventDescription);
-        if (this.eventListener != null) {
-            this.eventListener.receive(event);
+        for (IEventListener e : listenerList) {
+            e.receive(event);
         }
     }
 
     public boolean remove (String name, String surname) {
         System.out.println("############### Delete person ######################");
         if ((name == null) || (surname == null)) {
-            receiveEvent("characteristicIsNull", "Name or surname is null. Can't be deleted.");
+            sendEvent("characteristicIsNull", "Name or surname is null. Can't be deleted.");
             return false;
         }
         for (int i = 0; i < size(); i++) {
@@ -134,11 +139,11 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
                     persons [j] = persons [j+1];
                 }
                 persons [persons.length-1] = null;
-                receiveEvent("personDeleted", "Element #" + i + " was deleted from the list (" + person.getName() + " " + person.getSurname() + ").");
+                sendEvent("personDeleted", "Element #" + i + " was deleted from the list (" + person.getName() + " " + person.getSurname() + ").");
                 return true;
             }
         }
-        receiveEvent("personNotFound", "Can't be deleted. " + name + " " + surname + "is not found in the list.");
+        sendEvent("personNotFound", "Can't be deleted. " + name + " " + surname + "is not found in the list.");
         return false;
     }
 
@@ -149,7 +154,7 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
                 persons [i] = persons [i+1];
             }
             persons [persons.length-1] = null;
-            receiveEvent("personDeleted", "Element #" + (index+1) + " was deleted from the list.");
+            sendEvent("personDeleted", "Element #" + (index+1) + " was deleted from the list.");
             return true;
         }
 //        else {
