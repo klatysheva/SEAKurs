@@ -33,12 +33,10 @@ public class Person extends BaseObject {
         if (!super.equals(obj)) { // equals class from BaseObject since this class extends BaseObject
             return false;
         }
-
         if (!(obj instanceof Person)) {// type check
             //System.out.println("Objects of different classes");
             return false;
         }
-        // type check and cast
         Person person = (Person) obj; // cast to Person
         return (person.getName().equals(this.name) && person.getSurname().equals(this.surname));
     }

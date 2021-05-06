@@ -1,9 +1,11 @@
 package de.telekom.sea;
 
+import java.io.Closeable;
 import java.util.Scanner;
 
-public class PersonsMenu extends BaseObject implements IMenu, IEventListener {
+public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Closeable {
     private IList list;
+    Scanner scanner = new Scanner(System.in);
 
     public PersonsMenu(IList list) {
         this.list = list;
@@ -41,7 +43,6 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener {
 
     public String inputLine() {
         String result = "";
-        Scanner scanner = new Scanner(System.in);
         result = scanner.nextLine();
         return result;
     }
@@ -122,7 +123,6 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener {
             return;
         }
         System.out.println("Enter name: ");
-        Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
         System.out.println("Enter surname: ");
         String surname = scanner.nextLine();
@@ -131,6 +131,12 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener {
         person.setSurname(surname);
         list.add(person);
 
+    }
+
+    @Override
+    public void close() {
+        scanner.close();
+        System.out.println("Scanner is closed!");
     }
 
     public void removeAll () {
@@ -162,9 +168,14 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener {
     public  void showList() { //listAllPerson doesn't show last element
         System.out.println("############### Persons List  #######################");
         for (int i = 0; i < list.size();  i++){
-            if (list.get(i) != null) {
-                Person person = (Person) list.get(i);
-                System.out.println((i+1) + ". " + person.getSurname() + " " + person.getName());
+            try {
+                Object obj = list.get(i);
+                if (obj != null) {
+                    Person person = (Person) obj;
+                    System.out.println((i+1) + ". " + person.getSurname() + " " + person.getName());
+                }
+            } catch (WrongIndexException e) {
+                e.printStackTrace();
             }
         }
         System.out.println("-------------------");

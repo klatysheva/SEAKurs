@@ -19,7 +19,7 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
     }
 
     public boolean add (Object obj) {
-        System.out.println("############### Add person: #########################");
+        System.out.println("############### Add person #########################");
         //What must be checked first?
         if (isFull()) {
             System.out.println("List is full. All " + LENGTH + " places are taken.");
@@ -42,12 +42,9 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
         }
         if (size() < persons.length ) {
             persons [size()] = person;
-            //System.out.println(person.getSurname() + " " + person.getName()  + " added to the list under #" + size() + ".");
-            Event personAdded = new Event("personAdded", person.getSurname() + " " + person.getName()  + " added to the list under #" + size() + ".");
-            this.eventListener.receive(personAdded);
+            receiveEvent("personAdded", person.getSurname() + " " + person.getName()  + " added to the list under #" + size() + ".");
             if (isFull()) {
-                Event listIsFull = new Event("listIsFull", "List is full.");
-                this.eventListener.receive(listIsFull);
+                receiveEvent("listIsFull", "List is full.");
             }
             return true;
         }
@@ -69,38 +66,35 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
     }
 
     public void clear () {
-        System.out.println("############### Clear list: #########################");
+        System.out.println("############### Clear list #########################");
         if (size() == 0) {
             System.out.println("List is already leer. Nothing to clear." );
             return;
         }
         persons = new Person[LENGTH];
-        Event listIsEmpty = new Event("listIsEmpty","All elements are removed from the list.");
-        this.eventListener.receive(listIsEmpty);
+        receiveEvent("listIsEmpty","All elements are removed from the list.");
         isEmpty();
         //this.eventListener.receive(null);
     }
 
     public Person get(int i) {
         if ((i >= 0) && (i < persons.length)) {
-            //System.out.println(persons[i]);
             return (Person) persons[i];
         }
         else {
-            throw new RuntimeException("Wrong index. Index must be in the range from 0 to " + (persons.length) + ".");
+            throw new WrongIndexException(i, persons.length);
+            //throw new RuntimeException("Wrong index. Index must be in the range from 0 to " + (persons.length) + ".");
         }
     }
 
     public boolean remove (Object obj) {
-        System.out.println("############### Delete person: ######################");
+        System.out.println("############### Delete person ######################");
         if (obj == null) {
-            Event objectIsNull = new Event("objectIsNull", "It's null. Can't be deleted.");
-            this.eventListener.receive(objectIsNull);
+            receiveEvent("objectIsNull", "It's null. Can't be deleted.");
             return false;
         }
         if (!(obj instanceof Person)) {
-            Event objectOfAnotherClass = new Event("objectOfAnotherClass", "Can't find this object in the list, it's not a person. It shouldn't be in the list. It's a person list!");
-            this.eventListener.receive(objectOfAnotherClass);
+            receiveEvent("objectOfAnotherClass", "Can't find this object in the list, it's not a person. It shouldn't be in the list. It's a person list!");
             return false;
         }
         Person person = (Person) obj;
@@ -111,20 +105,25 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
                     persons [j] = persons [j+1];
                 }
                 persons [persons.length-1] = null;
-                Event personDeleted = new Event("personDeleted", "Element # " + i + " was deleted from the list (" + person.getName() + " " + person.getSurname() + ").");
-                this.eventListener.receive(personDeleted);
+                receiveEvent("personDeleted", "Element # " + i + " was deleted from the list (" + person.getName() + " " + person.getSurname() + ").");
                 return true;
             }
         }
-        Event personNotFound = new Event("personNotFound","Can't be deleted. " + person.getName() + " " + person.getSurname() + "is not found in the list.");
-        this.eventListener.receive(personNotFound);
+        receiveEvent("personNotFound","Can't be deleted. " + person.getName() + " " + person.getSurname() + "is not found in the list.");
         return false;
     }
+
+    private void receiveEvent(String eventName, String eventDescription) {
+        Event event = new Event(eventName, eventDescription);
+        if (this.eventListener != null) {
+            this.eventListener.receive(event);
+        }
+    }
+
     public boolean remove (String name, String surname) {
-        System.out.println("############### Delete person: ######################");
+        System.out.println("############### Delete person ######################");
         if ((name == null) || (surname == null)) {
-            Event characteristicIsNull = new Event("characteristicIsNull", "Name or surname is null. Can't be deleted.");
-            this.eventListener.receive(characteristicIsNull);
+            receiveEvent("characteristicIsNull", "Name or surname is null. Can't be deleted.");
             return false;
         }
         for (int i = 0; i < size(); i++) {
@@ -135,27 +134,27 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
                     persons [j] = persons [j+1];
                 }
                 persons [persons.length-1] = null;
-                Event personDeleted = new Event("personDeleted", "Element #" + i + " was deleted from the list (" + person.getName() + " " + person.getSurname() + ").");
-                this.eventListener.receive(personDeleted);
+                receiveEvent("personDeleted", "Element #" + i + " was deleted from the list (" + person.getName() + " " + person.getSurname() + ").");
                 return true;
             }
         }
-        Event personNotFound = new Event("personNotFound", "Can't be deleted. " + name + " " + surname + "is not found in the list.");
-        this.eventListener.receive(personNotFound);
+        receiveEvent("personNotFound", "Can't be deleted. " + name + " " + surname + "is not found in the list.");
         return false;
     }
 
     public boolean remove (int index) {
-        System.out.println("############### Delete person: ######################");
+        System.out.println("############### Delete person ######################");
         if ((index >= 0) && (index < persons.length)) {
             for (int i = index; i<(persons.length-1); i++) {
                 persons [i] = persons [i+1];
             }
             persons [persons.length-1] = null;
-            Event personDeleted = new Event("personDeleted", "Element #" + (index+1) + " was deleted from the list.");
-            this.eventListener.receive(personDeleted);
+            receiveEvent("personDeleted", "Element #" + (index+1) + " was deleted from the list.");
             return true;
         }
+//        else {
+//            throw new RuntimeException("Wrong index. Index must be in the range from 0 to " + (size() - 1) + ".");
+//        }
         else {
             System.out.println("Index must be in the range from 0 to " + (size() - 1) + ".");
             return false;
