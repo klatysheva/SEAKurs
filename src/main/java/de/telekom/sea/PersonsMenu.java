@@ -161,8 +161,9 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         person.setSurname(surname);
         System.out.println("############### Add person #########################");
         list.add(person);
+        //should be deleted when listeners are fixed:
         System.out.println(person.getSurname() + " " + person.getName() + " added to the list under #" + list.size() + ".");//should be deleted when listeners are fixed
-        showList(); //should be deleted when listeners are fixed
+        showList();
 
     }
 
@@ -204,16 +205,15 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         switch (option) {
             case "1":
                 searchWithOptions();
-
                 break;
             case "2":
                 System.out.println("Not implemented yet. Sorry. We are working on it :) ");
                 break;
             case "0":
-                System.out.println("0. Return to main menu");
+                System.out.println("0. Abort current search.");
                 break;
             default:
-                System.out.println("Invalid option. Returned to main menu.");
+                System.out.println("Invalid option.");
                 break;
         }
     }
@@ -252,7 +252,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         System.out.println(ANSI_BLUE + "Please select search option:" + ANSI_GREEN);
         System.out.println("1 - search by text (in name and surname)");
         System.out.println("2 - <option is in work>");
-        System.out.println("0 - return to main menu;");
+        System.out.println("0 - abort search;");
         System.out.println(ANSI_RESET);
     }
 
@@ -300,17 +300,18 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         System.out.println("Do you want to search further in this list? If yes input 'Y', to return to main menu input any other character or press enter.");
         String searchFurther = inputLine();
         if (searchFurther.equals("Y")) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     private void showChangeSearchOptionMenu(String searchOption) {
         System.out.println(ANSI_BLUE + "Select search option: " + ANSI_GREEN);
         System.out.println("1 - contains;");
         System.out.println("2 - startWith;");
-        System.out.println("If you input any other character current option will be kept. " + ANSI_YELLOW + "Current option: " + ANSI_RESET + searchOption + ".");
         System.out.println(ANSI_RESET);
+        System.out.println("If you input any other character current option will be kept. " + ANSI_YELLOW + "Current option: " + ANSI_RESET + searchOption + ".");
+
     }
 
 

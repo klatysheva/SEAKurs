@@ -13,10 +13,6 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
         this.persons = new Person[LENGTH];
     }
 
-    public int getLENGTH() {
-        return LENGTH;
-    }
-
     public void subscribe(IEventListener eventListener){
         listenerList.add(eventListener);
         //this.eventListener = eventListener;
@@ -25,6 +21,7 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
     public void unsubscribeAll(){
         listenerList.clear();
     }
+    public int getLENGTH() {return LENGTH;}
 
     public boolean add (Object obj) {
         //What must be checked first?
@@ -97,7 +94,7 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
         }
         else {
             for (int i = 0; i < sublist.size(); i++) {
-                System.out.println((i+1) + ". " + persons[i].getName() + " " + persons[i].getSurname());
+                System.out.println((i+1) + ". " + persons[i].getName() + " " + persons[i].getSurname() + ".");
             }
 
         }
