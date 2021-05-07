@@ -205,19 +205,33 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
                 String searchOption = "contains";
                 boolean isCaseSensitive = true;
                 while (isFinished == false) {
-                    System.out.println(ANSI_YELLOW + "Default: " + ANSI_RESET + "contains option, isCaseSensitive = true. Do you want change it? If yes input 'Y', if no - input any other character.");
+                    System.out.println(ANSI_YELLOW + "Current settings: " + ANSI_RESET + searchOption + " option, isCaseSensitive = " + isCaseSensitive + ". Do you want change it? If yes input 'Y', if no - input any other character.");
                     String changeOptions = inputLine();
                     if (changeOptions.equals("Y")) {
-                        System.out.println("If you want to search with startWith option input '1', otherwise press enter or input any character (contains option will be used by default)");
-                        if (inputLine().equals("1")){
-                            searchOption = "startWith";
-                            System.out.println("Search option changed to " + searchOption + ".");
+                        System.out.println("Select search option: ");
+                        System.out.println("1 - contains;");
+                        System.out.println("2 - startWith;");
+                        System.out.println("If you input any other character current option will be kept. " + ANSI_YELLOW + "Current option: " + ANSI_RESET + searchOption + ".");
+                        switch (inputLine()) {
+                            case "1": searchOption = "contains";
+                                System.out.println("Search option changed to " + searchOption + ".");
+                                break;
+                            case "2": searchOption = "startWith";
+                                System.out.println("Search option changed to " + searchOption + ".");
+                                break;
+                            default:
+                                System.out.println("Search option hasn't been changed.");
+                                break;
                         }
                         System.out.println("If you want to search with case insensitive mode input '1', otherwise press enter or input any character (case sensitive option will be used by default)");
                         if (inputLine().equals("1")){
                             isCaseSensitive = false;
                             System.out.println("Case insensitive mode activated.");
                         }
+                        else{
+                            isCaseSensitive = true;
+                        }
+                        System.out.println("Case sensitive mode: " + isCaseSensitive + ".");
                     }
                     System.out.println("Enter the string you want to search for: ");
                     String text = inputLine();
