@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class SeminarApp extends BaseObject {
 
-    public void run (PersonsList list, ArrayList<IEventListener> listenerList) {
+    //public void run (PersonsList list, ArrayList<IEventListener> listenerList) {
+    public void run (PersonsList list, IEventListener eventListener) {
         //for test only:
         Person person1 = new Person("Antony", "Smith");
         Person person2 = new Person("Walker", "Antony");
@@ -13,15 +14,17 @@ public class SeminarApp extends BaseObject {
         list.add(person3);
         list.add(person4);
         list.add(person1);
-        list.add(person2);
+
 
         try (PersonsMenu menu = new PersonsMenu(list)) {
             menu.showList();
-            for (IEventListener e : listenerList) {
-                list.subscribe(e);
-            }
+            list.subscribe(eventListener);
+            list.add(person2);
+//            for (IEventListener e : listenerList) {
+//                list.subscribe(e);
+//            }
             menu.selectOption();
-            list.unsubscribeAll();
+            //list.unsubscribeAll();
             //for test only (to check unsubscribe):
             //menu.selectOption();
         }

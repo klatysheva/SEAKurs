@@ -13,7 +13,8 @@ public class Test_Exceptions {
         listenerList.add(eventListener);
         listenerList.add(eventListener2);
 
-        app.run(personsList, listenerList);
+        //app.run(personsList, listenerList);
+        app.run(personsList, eventListener);
 
     }
 

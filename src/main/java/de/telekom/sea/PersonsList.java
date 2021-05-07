@@ -6,7 +6,8 @@ import java.util.Locale;
 public class PersonsList extends BaseObject implements IList, IEventRegistration {
     private int LENGTH;
     private Person[] persons;
-    private ArrayList<IEventListener> listenerList = new ArrayList();
+    //private ArrayList<IEventListener> listenerList = new ArrayList();
+    private IEventListener eventListener = null;
 
     public PersonsList(int length) {
         this.LENGTH = length;
@@ -14,13 +15,14 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
     }
 
     public void subscribe(IEventListener eventListener){
-        listenerList.add(eventListener);
-        //this.eventListener = eventListener;
+        //listenerList.add(eventListener);
+        this.eventListener = eventListener;
     }
 
-    public void unsubscribeAll(){
-        listenerList.clear();
-    }
+//    public void unsubscribeAll(){
+//        listenerList.clear();
+//    }
+
     public int getLENGTH() {return LENGTH;}
 
     public boolean add (Object obj) {
@@ -151,10 +153,13 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
     }
 
     private void sendEvent(String eventName, String eventDescription) {
-        Event event = new Event(eventName, eventDescription);
-        for (IEventListener e : listenerList) {
-            e.receive(event);
+        if (eventListener != null) {
+            Event event = new Event(eventName, eventDescription);
+            eventListener.receive(event);
         }
+//        for (IEventListener e : listenerList) {
+//            e.receive(event);
+//        }
     }
 
     public boolean remove (String name, String surname) {
