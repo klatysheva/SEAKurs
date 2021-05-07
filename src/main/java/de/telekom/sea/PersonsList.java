@@ -1,6 +1,7 @@
 package de.telekom.sea;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PersonsList extends BaseObject implements IList, IEventRegistration {
     private int LENGTH;
@@ -70,12 +71,24 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
 
     public IList searchByText(String text, String searchOption, boolean isCaseSensitive) {
         IList sublist = new PersonsList(size());
+
         System.out.println("Search result: ");
         for (int i = 0; i < size(); i++) {
-            if (searchOption.equals("contains") && (persons[i].getName().contains(text) || persons[i].getSurname().contains(text)) ) {
+            String name;
+            String surname;
+            if (isCaseSensitive == true) {
+                name = persons[i].getName();
+                surname = persons[i].getSurname();
+            }
+            else {
+                text = text.toLowerCase(Locale.ROOT);
+                name = persons[i].getName().toLowerCase(Locale.ROOT);
+                surname = persons[i].getSurname().toLowerCase(Locale.ROOT);
+            }
+            if (searchOption.equals("contains") && (name.contains(text) || surname.contains(text)) ) {
                 sublist.add(persons[i]);
             }
-            if (searchOption.equals("startWith") && (persons[i].getName().startsWith(text) || persons[i].getSurname().startsWith(text)) ) {
+            if (searchOption.equals("startWith") && (name.startsWith(text) || surname.startsWith(text)) ) {
                 sublist.add(persons[i]);
             }
         }
