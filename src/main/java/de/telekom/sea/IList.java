@@ -39,4 +39,7 @@ public interface IList {
     //return true if the list is completely empty
     boolean isEmpty();
 
+    //return list of found instances by specified criteria
+    IList searchByText(String text, String searchOption, boolean isCaseSensitive);
+
 }

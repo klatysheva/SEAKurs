@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PersonsList extends BaseObject implements IList, IEventRegistration {
     private int LENGTH;
-    private Object[] persons;
+    private Person[] persons;
     private ArrayList<IEventListener> listenerList = new ArrayList();
 
     public PersonsList(int length) {
@@ -26,7 +26,6 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
     }
 
     public boolean add (Object obj) {
-        System.out.println("############### Add person #########################");
         //What must be checked first?
         if (isFull()) {
             System.out.println("List is full. All " + LENGTH + " places are taken.");
@@ -67,6 +66,29 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
             return true;
         }
         return false;
+    }
+
+    public IList searchByText(String text, String searchOption, boolean isCaseSensitive) {
+        IList sublist = new PersonsList(size());
+        System.out.println("Search result: ");
+        for (int i = 0; i < size(); i++) {
+            if (searchOption.equals("contains") && (persons[i].getName().contains(text) || persons[i].getSurname().contains(text)) ) {
+                sublist.add(persons[i]);
+            }
+            if (searchOption.equals("startWith") && (persons[i].getName().startsWith(text) || persons[i].getSurname().startsWith(text)) ) {
+                sublist.add(persons[i]);
+            }
+        }
+        if (sublist.size() == 0) {
+            System.out.println("Search returned no results.");
+        }
+        else {
+            for (int i = 0; i < sublist.size(); i++) {
+                System.out.println((i+1) + ". " + persons[i].getName() + " " + persons[i].getSurname());
+            }
+
+        }
+        return sublist;
     }
 
     public void clear () {

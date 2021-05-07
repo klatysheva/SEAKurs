@@ -48,8 +48,9 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         else {
             System.out.println("4 - remove person by its index or name&surname");
             System.out.println("5 - remove all");
+            System.out.println("6 - search");
         }
-        System.out.println("6 - list all persons");
+        System.out.println("7 - list all persons");
         System.out.println("0 - exit");
         System.out.println(ANSI_RESET);
 
@@ -119,6 +120,14 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
                 removeAll();
                 break;
             case "6":
+                if (list.isEmpty()) {
+                    System.out.println("Please chose an valid number. To exit input 0.");
+                    break;
+                }
+                System.out.println("6. Search person.");
+                searchPerson();
+                break;
+            case "7":
                 System.out.println("6. List all persons.");
                 showList(); //listAllPerson
                 break;
@@ -143,7 +152,10 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         Person person = new Person();
         person.setName(name);
         person.setSurname(surname);
+        System.out.println("############### Add person #########################");
         list.add(person);
+        System.out.println(person.getSurname() + " " + person.getName()  + " added to the list under #" + list.size() + ".");//should be deleted when listeners are fixed
+        showList(); //should be deleted when listeners are fixed
 
     }
 
@@ -172,6 +184,56 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
                 System.out.println("Input person's surname: ");
                 String surname = inputLine();
                 list.remove(name, surname);
+                break;
+            default:
+                System.out.println("Invalid option. Returned to main menu.");
+                break;
+        }
+    }
+
+    public void searchPerson () {
+        System.out.println(ANSI_BLUE + "Please select search option:" + ANSI_GREEN);
+        System.out.println("1 - search by text (in name and surname)");
+        System.out.println("2 - <option is in work>");
+        System.out.println("0 - return to main menu;");
+        System.out.println(ANSI_RESET);
+        String option = inputLine();
+        switch (option) {
+            case "1":
+                boolean isFinished = false;
+                IList sublist= list;
+                String searchOption = "contains";
+                boolean isCaseSensitive = true;
+                while (isFinished == false) {
+                    System.out.println(ANSI_YELLOW + "Default: " + ANSI_RESET + "contains option, isCaseSensitive = true. Do you want change it? If yes input 'Y', if no - input any other character.");
+                    String changeOptions = inputLine();
+                    if (changeOptions.equals("Y")) {
+                        System.out.println("If you want to search with startWith option input '1', otherwise press enter or input any character (contains option will be used by default)");
+                        if (inputLine().equals("1")){
+                            searchOption = "startWith";
+                            System.out.println("Search option changed to " + searchOption + ".");
+                        }
+                        System.out.println("If you want to search with case insensitive mode input '1', otherwise press enter or input any character (case sensitive option will be used by default)");
+                        if (inputLine().equals("1")){
+                            isCaseSensitive = false;
+                            System.out.println("Case insensitive mode activated.");
+                        }
+                    }
+                    System.out.println("Enter the string you want to search for: ");
+                    String text = inputLine();
+                    sublist = sublist.searchByText(text, searchOption, isCaseSensitive);
+                    System.out.println("Do you want to search in this list? If yes input 'Y', to return to main menu input any other character or press enter.");
+                    String searchFurther = inputLine();
+                    if (!(searchFurther.equals("Y"))) {
+                        isFinished = true;
+                    }
+                }
+                break;
+            case "2":
+                System.out.println("Not implemented yet. Sorry. We are working on it :) ");
+                break;
+            case "0":
+                System.out.println("0. Return to main menu");
                 break;
             default:
                 System.out.println("Invalid option. Returned to main menu.");

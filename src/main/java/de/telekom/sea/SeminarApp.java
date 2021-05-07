@@ -6,15 +6,22 @@ public class SeminarApp extends BaseObject {
 
     public void run (PersonsList list, ArrayList<IEventListener> listenerList) {
         //for test only:
-        Person person1 = new Person("Antony", "Walker");
+        Person person1 = new Person("Antony", "Smith");
+        Person person2 = new Person("Walker", "Antony");
+        Person person3 = new Person("Sam", "Smith");
+        Person person4 = new Person("John", "Adams");
         list.add(person1);
+        list.add(person2);
+        list.add(person3);
+        list.add(person4);
 
         try (PersonsMenu menu = new PersonsMenu(list)) {
-            for (IEventListener e : listenerList) {
-                list.subscribe(e);
-            }
-            menu.selectOption();
-            list.unsubscribeAll();
+            menu.showList();
+//            for (IEventListener e : listenerList) {
+//                list.subscribe(e);
+//            }
+//            menu.selectOption();
+//            list.unsubscribeAll();
             //for test only:
             menu.selectOption();
         }
