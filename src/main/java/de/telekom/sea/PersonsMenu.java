@@ -127,7 +127,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
                 boolean continueSearch = true;
                 while (continueSearch ==true) {
                     searchPerson();
-                    System.out.println("Do you want to try a new search? If yes input 'Y'. Any other character to quit search.");
+                    System.out.println("Do you want to try a new search? If yes input 'Y' or any other character to quit search.");
                     String newSearch = inputLine();
                     if (!(newSearch.toUpperCase(Locale.ROOT).equals("Y"))) {
                         continueSearch = false;
@@ -229,7 +229,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
             System.out.println("Do you want change it? If yes input 'Y', if no - input any other character.");
             String changeOptions = inputLine();
             if (changeOptions.toUpperCase(Locale.ROOT).equals("Y")) {
-                searchOption = changeOptionMenu(searchOption);
+                searchOption = changeSearchOptionMenu(searchOption);
                 isCaseSensitive = changeCaseSensitiveMode();
             }
             System.out.println("Enter the string you want to search for: ");
@@ -256,7 +256,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         System.out.println(ANSI_RESET);
     }
 
-    private String changeOptionMenu(String searchOption) {
+    private String changeSearchOptionMenu(String searchOption) {
         showChangeSearchOptionMenu(searchOption);
         String inputResult = inputLine();
         switch (inputResult) {
