@@ -1,6 +1,7 @@
 package de.telekom.sea;
 
 import java.io.Closeable;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Closeable {
@@ -192,56 +193,11 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
     }
 
     public void searchPerson () {
-        System.out.println(ANSI_BLUE + "Please select search option:" + ANSI_GREEN);
-        System.out.println("1 - search by text (in name and surname)");
-        System.out.println("2 - <option is in work>");
-        System.out.println("0 - return to main menu;");
-        System.out.println(ANSI_RESET);
+        showSearchMenu();
         String option = inputLine();
         switch (option) {
             case "1":
-                boolean isFinished = false;
-                IList sublist= list;
-                String searchOption = "contains";
-                boolean isCaseSensitive = true;
-                while (isFinished == false) {
-                    System.out.println(ANSI_YELLOW + "Current settings: " + ANSI_RESET + searchOption + " option, isCaseSensitive = " + isCaseSensitive + ". Do you want change it? If yes input 'Y', if no - input any other character.");
-                    String changeOptions = inputLine();
-                    if (changeOptions.equals("Y")) {
-                        System.out.println("Select search option: ");
-                        System.out.println("1 - contains;");
-                        System.out.println("2 - startWith;");
-                        System.out.println("If you input any other character current option will be kept. " + ANSI_YELLOW + "Current option: " + ANSI_RESET + searchOption + ".");
-                        switch (inputLine()) {
-                            case "1": searchOption = "contains";
-                                System.out.println("Search option changed to " + searchOption + ".");
-                                break;
-                            case "2": searchOption = "startWith";
-                                System.out.println("Search option changed to " + searchOption + ".");
-                                break;
-                            default:
-                                System.out.println("Search option hasn't been changed.");
-                                break;
-                        }
-                        System.out.println("If you want to search with case insensitive mode input '1', otherwise press enter or input any character (case sensitive option will be used by default)");
-                        if (inputLine().equals("1")){
-                            isCaseSensitive = false;
-                            System.out.println("Case insensitive mode activated.");
-                        }
-                        else{
-                            isCaseSensitive = true;
-                        }
-                        System.out.println("Case sensitive mode: " + isCaseSensitive + ".");
-                    }
-                    System.out.println("Enter the string you want to search for: ");
-                    String text = inputLine();
-                    sublist = sublist.searchByText(text, searchOption, isCaseSensitive);
-                    System.out.println("Do you want to search in this list? If yes input 'Y', to return to main menu input any other character or press enter.");
-                    String searchFurther = inputLine();
-                    if (!(searchFurther.equals("Y"))) {
-                        isFinished = true;
-                    }
-                }
+                searchWithOptions();
                 break;
             case "2":
                 System.out.println("Not implemented yet. Sorry. We are working on it :) ");
@@ -253,6 +209,85 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
                 System.out.println("Invalid option. Returned to main menu.");
                 break;
         }
+    }
+
+    private void showSearchMenu() {
+        System.out.println(ANSI_BLUE + "Please select search option:" + ANSI_GREEN);
+        System.out.println("1 - search by text (in name and surname)");
+        System.out.println("2 - <option is in work>");
+        System.out.println("0 - return to main menu;");
+        System.out.println(ANSI_RESET);
+    }
+
+    private void searchWithOptions() {
+        boolean isSearchFinished = false;
+        IList sublist= list;
+        String searchOption = "contains";
+        boolean isCaseSensitive = true;
+        while (isSearchFinished == false) {
+            showSettings(searchOption, isCaseSensitive);
+            System.out.println("Do you want change it? If yes input 'Y', if no - input any other character.");
+            String changeOptions = inputLine();
+            if (changeOptions.toUpperCase(Locale.ROOT).equals("Y")) {
+                searchOption = changeOptionMenu(searchOption);
+                isCaseSensitive = changeCaseSensitiveMode();
+            }
+            System.out.println("Enter the string you want to search for: ");
+            String text = inputLine();
+            sublist = sublist.searchByText(text, searchOption, isCaseSensitive);
+            isSearchFinished = isSearchFinished();
+        }
+    }
+
+    private boolean isSearchFinished() {
+        System.out.println("Do you want to search further in this list? If yes input 'Y', to return to main menu input any other character or press enter.");
+        String searchFurther = inputLine();
+        if (searchFurther.equals("Y")) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean changeCaseSensitiveMode() {
+        boolean isCaseSensitive;
+        System.out.println("If you want to search with case insensitive mode input '1', otherwise press enter or input any character (case sensitive option will be used by default)");
+        if (inputLine().equals("1")){
+            isCaseSensitive = false;
+            System.out.println("Case insensitive mode activated.");
+        }
+        else{
+            isCaseSensitive = true;
+        }
+        System.out.println("Case sensitive mode: " + isCaseSensitive + ".");
+        return isCaseSensitive;
+    }
+
+    private String changeOptionMenu(String searchOption) {
+        showChangeSearchOptionMenu(searchOption);
+        switch (inputLine()) {
+            case "1": searchOption = "contains";
+                System.out.println("Search option changed to " + searchOption + ".");
+                break;
+            case "2": searchOption = "startWith";
+                System.out.println("Search option changed to " + searchOption + ".");
+                break;
+            default:
+                System.out.println("Search option hasn't been changed.");
+                break;
+        }
+        return searchOption;
+    }
+
+    private void showChangeSearchOptionMenu(String searchOption) {
+        System.out.println(ANSI_BLUE + "Select search option: " + ANSI_GREEN);
+        System.out.println("1 - contains;");
+        System.out.println("2 - startWith;");
+        System.out.println("If you input any other character current option will be kept. " + ANSI_YELLOW + "Current option: " + ANSI_RESET + searchOption + ".");
+        System.out.println(ANSI_RESET);
+    }
+
+    private void showSettings(String searchOption, boolean isCaseSensitive) {
+        System.out.println(ANSI_YELLOW + "Current settings: " + ANSI_RESET + searchOption + " option, isCaseSensitive = " + isCaseSensitive + ".");
     }
 
     public  void showList() { //listAllPerson doesn't show last element
