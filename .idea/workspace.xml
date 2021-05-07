@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85e24375-139d-49c7-912f-2ef9ef67a8f7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -215,17 +216,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java</url>
-          <line>23</line>
+          <line>24</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java</url>
-          <line>21</line>
+          <line>22</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java</url>
-          <line>22</line>
+          <line>23</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
