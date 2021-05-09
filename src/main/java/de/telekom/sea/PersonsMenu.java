@@ -1,7 +1,6 @@
 package de.telekom.sea;
 
 import java.io.Closeable;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Closeable {
@@ -16,7 +15,6 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
 
     public PersonsMenu(IList list) {
         this.list = list;
-
     }
 
     public void receive(Event event) {
@@ -24,7 +22,6 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         System.out.println();
         showList();
     }
-
 
     @Override
     public void setList(IList list) {
@@ -61,20 +58,8 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         return result;
     }
 
-    public int inputInt() {
-        int result;
-        Scanner scanner = new Scanner(System.in);
-        result = scanner.nextInt();
-        return result;
-    }
-
     public void selectOption() { //keepAsking
         String result = "";
-//        while (!result.equals("0")) {
-//            showMenu();
-//            result = checkMenu();
-//        }
-
         do {
             showMenu();
             result = checkMenu();
@@ -119,24 +104,12 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
                 removeAll();
                 break;
             case "6":
-                if (list.isEmpty()) {
-                    System.out.println("Please chose an valid number. To exit input 0.");
-                    break;
-                }
-                System.out.println("6. Search person.");
-                boolean continueSearch = true;
-                while (continueSearch ==true) {
-                    searchPerson();
-                    System.out.println("Do you want to try a new search? If yes input 'Y' or any other character to quit search.");
-                    String newSearch = inputLine();
-                    if (!(newSearch.toUpperCase(Locale.ROOT).equals("Y"))) {
-                        continueSearch = false;
-                    }
-                }
+                PersonSearchMenu personSearchMenu = new PersonSearchMenu(list);
+                personSearchMenu.selectOption();
                 break;
             case "7":
                 System.out.println("6. List all persons.");
-                showList(); //listAllPerson
+                showList();
                 break;
             case "0":
                 System.out.println("0. Exit.");
@@ -162,8 +135,8 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         System.out.println("############### Add person #########################");
         list.add(person);
         //should be deleted when listeners are fixed:
-        System.out.println(person.getSurname() + " " + person.getName() + " added to the list under #" + list.size() + ".");//should be deleted when listeners are fixed
-        showList();
+        //System.out.println(person.getSurname() + " " + person.getName() + " added to the list under #" + list.size() + ".");
+        //showList();
 
     }
 
@@ -198,122 +171,6 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
                 break;
         }
     }
-
-    public void searchPerson() {
-        showSearchMenu();
-        String option = inputLine();
-        switch (option) {
-            case "1":
-                searchWithOptions();
-                break;
-            case "2":
-                System.out.println("Not implemented yet. Sorry. We are working on it :) ");
-                break;
-            case "0":
-                System.out.println("0. Abort current search.");
-                break;
-            default:
-                System.out.println("Invalid option.");
-                break;
-        }
-    }
-
-    private void searchWithOptions() {
-        boolean isSearchFinished = false;
-        IList sublist = list;
-        String searchOption = "contains";
-        boolean isCaseSensitive = true;
-
-        while (!isSearchFinished) {
-            showSearchSettings(searchOption, isCaseSensitive);
-            System.out.println("Do you want change it? If yes input 'Y', if no - input any other character.");
-            String changeOptions = inputLine();
-            if (changeOptions.toUpperCase(Locale.ROOT).equals("Y")) {
-                searchOption = changeSearchOptionMenu(searchOption);
-                isCaseSensitive = changeCaseSensitiveMode();
-            }
-            System.out.println("Enter the string you want to search for: ");
-            String text = inputLine();
-            sublist = sublist.searchByText(text, searchOption, isCaseSensitive);
-            if (sublist.size() > 0) {
-                isSearchFinished = isSearchFinished();
-            }
-            else {
-                isSearchFinished = true;
-            }
-        }
-    }
-
-    private void showSearchSettings(String searchOption, boolean isCaseSensitive) {
-        System.out.println(ANSI_YELLOW + "Current settings: " + ANSI_RESET + searchOption + " option, isCaseSensitive = " + isCaseSensitive + ".");
-    }
-
-    private void showSearchMenu() {
-        System.out.println(ANSI_BLUE + "Please select search option:" + ANSI_GREEN);
-        System.out.println("1 - search by text (in name and surname)");
-        System.out.println("2 - <option is in work>");
-        System.out.println("0 - abort search;");
-        System.out.println(ANSI_RESET);
-    }
-
-    private String changeSearchOptionMenu(String searchOption) {
-        showChangeSearchOptionMenu(searchOption);
-        String inputResult = inputLine();
-        switch (inputResult) {
-            case "1":
-                if (searchOption.equals("contains")) {
-                    System.out.println("Search option hasn't been changed.");
-                } else {
-                    searchOption = "contains";
-                    System.out.println("Search option changed to " + searchOption + ".");
-                }
-                break;
-            case "2":
-                if (searchOption.equals("startWith")) {
-                    System.out.println("Search option hasn't been changed.");
-                } else {
-                    searchOption = "startWith";
-                    System.out.println("Search option changed to " + searchOption + ".");
-                }
-                break;
-            default:
-                System.out.println("Search option hasn't been changed.");
-                break;
-        }
-        return searchOption;
-    }
-
-    private boolean changeCaseSensitiveMode() {
-        boolean isCaseSensitive;
-        System.out.println("If you want to search with case insensitive mode input '1', otherwise press enter or input any character (case sensitive option will be used by default)");
-        if (inputLine().equals("1")) {
-            isCaseSensitive = false;
-            System.out.println("Case insensitive mode activated.");
-        } else {
-            isCaseSensitive = true;
-        }
-        System.out.println("Case sensitive mode: " + isCaseSensitive + ".");
-        return isCaseSensitive;
-    }
-
-    private boolean isSearchFinished() {
-        System.out.println("Do you want to search further in this list? If yes input 'Y', to return to main menu input any other character or press enter.");
-        String searchFurther = inputLine();
-        if (searchFurther.equals("Y")) {
-            return false;
-        }
-        return true;
-    }
-
-    private void showChangeSearchOptionMenu(String searchOption) {
-        System.out.println(ANSI_BLUE + "Select search option: " + ANSI_GREEN);
-        System.out.println("1 - contains;");
-        System.out.println("2 - startWith;");
-        System.out.println(ANSI_RESET);
-        System.out.println("If you input any other character current option will be kept. " + ANSI_YELLOW + "Current option: " + ANSI_RESET + searchOption + ".");
-
-    }
-
 
     public void showList() { //listAllPerson doesn't show last element
         System.out.println("############### Persons List  #######################");

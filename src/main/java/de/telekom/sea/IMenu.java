@@ -1,6 +1,7 @@
 package de.telekom.sea;
 
 public interface IMenu {
+
     void setList(IList list);
     void selectOption(); //keepAsking
 

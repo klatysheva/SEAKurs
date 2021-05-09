@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85e24375-139d-49c7-912f-2ef9ef67a8f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/SeminarApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/SeminarApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/Test_Exceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/Test_Exceptions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonSearchMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/SearchOptionsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/BaseObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/BaseObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/IMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/IMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/SearchPersonMenu.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,12 +111,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test_Exceptions (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="de.telekom.sea.Test_Exceptions" />
+    <configuration name="Test_Exceptions" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="archive.task_Exceptions.Test_Exceptions" />
       <module name="SEAKurs" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="de.telekom.sea.*" />
+          <option name="PATTERN" value="archive.task_Exceptions.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -121,11 +125,11 @@
       </method>
     </configuration>
     <configuration name="Test_Exceptions" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="archive.task_Exceptions.Test_Exceptions" />
+      <option name="MAIN_CLASS_NAME" value="de.telekom.sea.Test_Exceptions" />
       <module name="SEAKurs" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="archive.task_Exceptions.*" />
+          <option name="PATTERN" value="de.telekom.sea.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -227,6 +231,26 @@
           <url>file://$PROJECT_DIR$/src/main/java/archive/task_BaseObject/BaseObject.java</url>
           <line>30</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsList.java</url>
+          <line>155</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsList.java</url>
+          <line>156</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsList.java</url>
+          <line>157</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/SeminarApp.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
