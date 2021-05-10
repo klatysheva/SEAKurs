@@ -7,6 +7,10 @@ public class Person extends BaseObject {
     public Person() {
     }
 
+    public Person(String surname) {
+        this.surname = surname;
+    }
+
     public Person(String name, String surname) {
         this.name = name;
         this.surname = surname;

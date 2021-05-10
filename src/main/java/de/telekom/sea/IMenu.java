@@ -1,9 +1,11 @@
 package de.telekom.sea;
 
+import java.io.IOException;
+
 public interface IMenu {
 
     void setList(IList list);
-    void selectOption(); //keepAsking
+    void selectOption() throws IOException; //keepAsking
 
 //    void showMenu();
 //    String inputMenu();
