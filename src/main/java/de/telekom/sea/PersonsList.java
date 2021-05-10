@@ -1,32 +1,31 @@
 package de.telekom.sea;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PersonsList extends BaseObject implements IList, IEventRegistration {
     private int LENGTH;
-    private Object[] persons;
-    private ArrayList<IEventListener> listenerList = new ArrayList();
+    private Person[] persons;
+    //private ArrayList<IEventListener> listenerList = new ArrayList();
+    private IEventListener eventListener = null;
 
     public PersonsList(int length) {
         this.LENGTH = length;
         this.persons = new Person[LENGTH];
     }
 
-    public int getLENGTH() {
-        return LENGTH;
-    }
-
     public void subscribe(IEventListener eventListener){
-        listenerList.add(eventListener);
-        //this.eventListener = eventListener;
+        //listenerList.add(eventListener);
+        this.eventListener = eventListener;
     }
 
-    public void unsubscribeAll(){
-        listenerList.clear();
-    }
+//    public void unsubscribeAll(){
+//        listenerList.clear();
+//    }
+
+    public int getLENGTH() {return LENGTH;}
 
     public boolean add (Object obj) {
-        System.out.println("############### Add person #########################");
         //What must be checked first?
         if (isFull()) {
             System.out.println("List is full. All " + LENGTH + " places are taken.");
@@ -67,6 +66,41 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
             return true;
         }
         return false;
+    }
+
+    public IList searchByText(String text, String searchOption, boolean isCaseSensitive) {
+        IList sublist = new PersonsList(size());
+
+        System.out.println("Search result: ");
+        for (int i = 0; i < size(); i++) {
+            String name;
+            String surname;
+            if (isCaseSensitive == true) {
+                name = persons[i].getName();
+                surname = persons[i].getSurname();
+            }
+            else {
+                text = text.toLowerCase(Locale.ROOT);
+                name = persons[i].getName().toLowerCase(Locale.ROOT);
+                surname = persons[i].getSurname().toLowerCase(Locale.ROOT);
+            }
+            if (searchOption.equals("contains") && (name.contains(text) || surname.contains(text)) ) {
+                sublist.add(persons[i]);
+            }
+            if (searchOption.equals("startWith") && (name.startsWith(text) || surname.startsWith(text)) ) {
+                sublist.add(persons[i]);
+            }
+        }
+        if (sublist.size() == 0) {
+            System.out.println("Search returned no results.");
+        }
+        else {
+            for (int i = 0; i < sublist.size(); i++) {
+                System.out.println((i+1) + ". " + persons[i].getName() + " " + persons[i].getSurname() + ".");
+            }
+
+        }
+        return sublist;
     }
 
     public void clear () {
@@ -119,10 +153,13 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
     }
 
     private void sendEvent(String eventName, String eventDescription) {
-        Event event = new Event(eventName, eventDescription);
-        for (IEventListener e : listenerList) {
-            e.receive(event);
+        if (eventListener != null) {
+            Event event = new Event(eventName, eventDescription);
+            eventListener.receive(event);
         }
+//        for (IEventListener e : listenerList) {
+//            e.receive(event);
+//        }
     }
 
     public boolean remove (String name, String surname) {

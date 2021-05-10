@@ -15,15 +15,13 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
 
     public PersonsMenu(IList list) {
         this.list = list;
-
     }
 
-    public void receive(Event event ){
+    public void receive(Event event) {
         System.out.println("Event: " + event.description);
         System.out.println();
         showList();
     }
-
 
     @Override
     public void setList(IList list) {
@@ -35,8 +33,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         System.out.println(ANSI_BLUE + "Select option:" + ANSI_GREEN);
         if (list.isFull()) {
             System.out.println(ANSI_GREY + "1 - (NOT ACTIVE) input person" + ANSI_GREEN);
-        }
-        else {
+        } else {
             System.out.println("1 - input person");
         }
         System.out.println("2 - show occupied places");
@@ -44,12 +41,12 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         if (list.isEmpty()) {
             System.out.println(ANSI_GREY + "4 - (NOT ACTIVE) remove person by its index or name&surname");
             System.out.println("5 - (NOT ACTIVE) remove all" + ANSI_GREEN);
-        }
-        else {
+        } else {
             System.out.println("4 - remove person by its index or name&surname");
             System.out.println("5 - remove all");
+            System.out.println("6 - search");
         }
-        System.out.println("6 - list all persons");
+        System.out.println("7 - list all persons");
         System.out.println("0 - exit");
         System.out.println(ANSI_RESET);
 
@@ -61,20 +58,8 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         return result;
     }
 
-    public int inputInt() {
-        int result;
-        Scanner scanner = new Scanner(System.in);
-        result = scanner.nextInt();
-        return result;
-    }
-
     public void selectOption() { //keepAsking
         String result = "";
-//        while (!result.equals("0")) {
-//            showMenu();
-//            result = checkMenu();
-//        }
-
         do {
             showMenu();
             result = checkMenu();
@@ -119,8 +104,12 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
                 removeAll();
                 break;
             case "6":
+                PersonSearchMenu personSearchMenu = new PersonSearchMenu(list);
+                personSearchMenu.selectOption();
+                break;
+            case "7":
                 System.out.println("6. List all persons.");
-                showList(); //listAllPerson
+                showList();
                 break;
             case "0":
                 System.out.println("0. Exit.");
@@ -143,7 +132,11 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         Person person = new Person();
         person.setName(name);
         person.setSurname(surname);
+        System.out.println("############### Add person #########################");
         list.add(person);
+        //should be deleted when listeners are fixed:
+        //System.out.println(person.getSurname() + " " + person.getName() + " added to the list under #" + list.size() + ".");
+        //showList();
 
     }
 
@@ -153,11 +146,11 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         System.out.println("Scanner is closed!");
     }
 
-    public void removeAll () {
+    public void removeAll() {
         list.clear();
     }
 
-    public void removePerson () {
+    public void removePerson() {
         System.out.println("To delete person by element's index input '1', by name&surname - '2' ");
         String option = inputLine();
         switch (option) {
@@ -179,14 +172,14 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         }
     }
 
-    public  void showList() { //listAllPerson doesn't show last element
+    public void showList() { //listAllPerson doesn't show last element
         System.out.println("############### Persons List  #######################");
-        for (int i = 0; i < list.size();  i++){
+        for (int i = 0; i < list.size(); i++) {
             try {
                 Object obj = list.get(i);
                 if (obj != null) {
                     Person person = (Person) obj;
-                    System.out.println((i+1) + ". " + person.getSurname() + " " + person.getName());
+                    System.out.println((i + 1) + ". " + person.getSurname() + " " + person.getName());
                 }
             } catch (WrongIndexException e) {
                 e.printStackTrace();
@@ -205,20 +198,4 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         System.out.println("There are " + list.freePlaces() + " free place(s) in the list.");
         System.out.println();
     }
-
-//    public  void showFullList() {
-//        System.out.println("############### Persons List(+nulls and references) #");
-//        for (int i = 0; i < list.size(); i++){
-//            Person person = (Person) list.get(i);
-//            System.out.print((i+1) + ". " + person);
-//            if (list.get(i) != null) {
-//                System.out.println(": " + person.getSurname() + " " + person.getName());
-//            }
-//            else {
-//                System.out.println();
-//            }
-//        }
-//        System.out.println("Persons count: " + list.size() + ".");
-//        System.out.println();
-//    }
 }
