@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85e24375-139d-49c7-912f-2ef9ef67a8f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/WrongIdException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsListReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsListReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java" afterDir="false" />
     </list>
@@ -247,7 +245,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsListReader.java</url>
-          <line>32</line>
+          <line>38</line>
           <option name="timeStamp" value="87" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">

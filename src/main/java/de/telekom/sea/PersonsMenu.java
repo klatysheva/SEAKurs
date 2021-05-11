@@ -29,7 +29,6 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
     @Override
     public void setList(IList list) {
         this.list = list;
-        System.out.println("setList successful. list: " + list);
     }
 
     public void showMenu() {
@@ -235,13 +234,11 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
     }
 
     public void readList() throws IOException {
-        System.out.println("Please input file name (should be in 'src/test/resources/' folder). Example: mylist.csv");
+        System.out.println(ANSI_BLUE + "Please input file name (should be in 'src/test/resources/' folder). Example: mylist.csv"+ ANSI_RESET);
         System.out.println("Please notice: expected person's format id|surname|name");
         String inputFileName = "src/test/resources/" + inputLine();
-        System.out.println("Please input separator:");
-        String separator = inputLine();
         try (FileReader fileReader = new FileReader(inputFileName)) {
-            PersonsListReader personsListReader = new PersonsListReader(fileReader, separator);
+            PersonsListReader personsListReader = new PersonsListReader(fileReader, scanner);
             setList(personsListReader.read());
             showList();
         }
