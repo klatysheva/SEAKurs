@@ -13,21 +13,15 @@ public class PersonReader {
         this.separator = separator;
     }
 
-    public Person read(String line) {
+    public Object read(String line) throws WrongIdException{
         if (!line.isEmpty()) {
             String[] splitLine= line.split(separator);
             String surname = splitLine[1];
             String name = splitLine[2];
-//            for (int i = 0; i <splitLine.length; i ++) {
-//                System.out.print(splitLine[i]);
-//            }
-//            System.out.println();
-//            System.out.println(splitLine[0]);
-//            System.out.println(splitLine[1]);
-//            System.out.println(splitLine[2]);
             try {
                 Long id = Long.parseLong(splitLine[0]);
                 person = new Person(id, surname, name);
+                System.out.println(person.getId());
             } catch (NumberFormatException nfe) {
                 person = new Person(surname, name);
                 System.out.println("NumberFormatException: wrong id format. New id was assigned for " + person.getSurname() + " " + person.getName() + ": "+ person.getId() + ".");

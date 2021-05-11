@@ -122,7 +122,11 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
                 break;
             case "9":
                 System.out.println("9. Import list.");
-                readList();
+                try {
+                    readList();
+                } catch (IOException e) {
+                    System.out.println(ANSI_RED + "Error: file not found." + ANSI_RESET);
+                }
                 break;
             case "0":
                 System.out.println("0. Exit.");
@@ -213,8 +217,8 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
     }
 
     public void saveList() {
-        System.out.println("Please input file name:");
-        String outputFileName = "src/test/resources/" + inputLine() + ".csv";
+        System.out.println("Please input file name (example: mylist.csv):");
+        String outputFileName = "src/test/resources/" + inputLine();
 
 //        try (FileWriter fileWriter = new FileWriter(outputFileName)) {
 //            for (int i = 0; i < list.size(); i++) {
@@ -230,22 +234,16 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         }
     }
 
-    public void readList () {
-        System.out.println("Please input file name (should be in src/test/resources/ folder):");
-        String inputFileName = "src/test/resources/" + inputLine() + ".csv";
+    public void readList() throws IOException {
+        System.out.println("Please input file name (should be in 'src/test/resources/' folder). Example: mylist.csv");
+        System.out.println("Please notice: expected person's format id|surname|name");
+        String inputFileName = "src/test/resources/" + inputLine();
         System.out.println("Please input separator:");
         String separator = inputLine();
         try (FileReader fileReader = new FileReader(inputFileName)) {
             PersonsListReader personsListReader = new PersonsListReader(fileReader, separator);
-            Person [] persons = personsListReader.read();
-            //to check import:
-            for (int i = 0; i < persons.length; i++) {
-                System.out.println(persons[i].getId() + " " + persons[i].getSurname() + " " + persons[i].getName());
-            }
-            // ####
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            setList(personsListReader.read());
+            showList();
         }
 
     }

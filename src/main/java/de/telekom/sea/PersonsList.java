@@ -14,6 +14,10 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
         this.persons = new Person[LENGTH];
     }
 
+    public PersonsList(Person[] persons) {
+        this.persons = persons;
+    }
+
     public void subscribe(IEventListener eventListener){
         //listenerList.add(eventListener);
         this.eventListener = eventListener;
