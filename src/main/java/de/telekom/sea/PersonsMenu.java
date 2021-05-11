@@ -1,6 +1,7 @@
 package de.telekom.sea;
 
 import java.io.Closeable;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -213,7 +214,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
 
     public void saveList() {
         System.out.println("Please input file name:");
-        String outputFileName = "src/test/resources/" + inputLine() + ".sea";
+        String outputFileName = "src/test/resources/" + inputLine() + ".csv";
 
 //        try (FileWriter fileWriter = new FileWriter(outputFileName)) {
 //            for (int i = 0; i < list.size(); i++) {
@@ -230,14 +231,19 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
     }
 
     public void readList () {
-        System.out.println("Please input file name ():");
-        String inputFileName = "src/test/resources/" + inputLine() + ".sea";
-        PersonsListReader personsListReader = new PersonsListReader(inputFileName);
-        try {
+        System.out.println("Please input file name (should be in src/test/resources/ folder):");
+        String inputFileName = "src/test/resources/" + inputLine() + ".csv";
+        System.out.println("Please input separator:");
+        String separator = inputLine();
+        try (FileReader fileReader = new FileReader(inputFileName)) {
+            PersonsListReader personsListReader = new PersonsListReader(fileReader, separator);
             Person [] persons = personsListReader.read();
+            //to check import:
             for (int i = 0; i < persons.length; i++) {
-                System.out.println(persons[i].getSurname());
+                System.out.println(persons[i].getId() + " " + persons[i].getSurname() + " " + persons[i].getName());
             }
+            // ####
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -5,12 +5,15 @@ import java.io.IOException;
 
 public class PersonWriter {
     FileWriter fileWriter;
-    void write(Person person) throws IOException {
-        fileWriter.write( person.getSurname() + " " + person.getName()+ "\n");
-    }
 
     public PersonWriter(FileWriter fileWriter) {
         this.fileWriter = fileWriter;
     }
+
+    void write(Person person) throws IOException {
+        fileWriter.write(String.format("%s;%s;%s\n", person.getId().toString(), person.getSurname(), person.getName()));
+
+    }
+
 
 }

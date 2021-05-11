@@ -6,6 +6,9 @@ public class BaseObject extends Child {
     private long id;
     private static long idCounter = 0;
 
+    public BaseObject(long id) {
+        this.id = id;
+    }
 
     public BaseObject() {
         this.id = ++idCounter;

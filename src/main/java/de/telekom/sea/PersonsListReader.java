@@ -1,37 +1,30 @@
 package de.telekom.sea;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class PersonsListReader {
-    String inputFile;
+    private PersonReader personReader;
+    private FileReader fileReader;
 
-    public PersonsListReader(String inputFile) {
-        this.inputFile = inputFile;
+    public PersonsListReader(FileReader fileReader, String separator) {
+        this.personReader = new PersonReader(fileReader, separator);
+        this.fileReader = fileReader;
     }
 
     Person[] read() throws IOException {
         Person[] persons = new Person[0];
-        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
-            ArrayList<String> list = new ArrayList<String>();
-            String line = reader.readLine();
+        try (BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            ArrayList<Person> list = new ArrayList<Person>();
+            String line = bufferedReader.readLine();
             while (line != null) {
                 if (!line.isEmpty()) {
-                    list.add(line);
-                    System.out.println(line);
-                    line = reader.readLine();
+                    list.add(personReader.read(line));
+                    line = bufferedReader.readLine();
                 }
-                String[] nameArray = list.toArray(new String[0]);
-                persons = new Person[nameArray.length];
-                for (int i = 0; i < nameArray.length; i++) {
-                    persons[i] = new Person(nameArray[i]);
-                }
+                persons = list.toArray(new Person[0]);
             }
         }
         return persons;
     }
-
 }
