@@ -4,4 +4,4 @@
 /out/
 SEAKurs.iml
 /src/main/java/archive/
-.gitignore
+/src/test/resources/

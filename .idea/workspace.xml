@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85e24375-139d-49c7-912f-2ef9ef67a8f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonSearchMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/SearchOptionsMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/BaseObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/BaseObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/IMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/IMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsListReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsListReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/telekom/sea/SearchPersonMenu.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/de/telekom/sea" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -100,6 +97,19 @@
     </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.telekom.sea.classwork.exceptions.Test" />
+      <module name="SEAKurs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.telekom.sea.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test_Exceptions (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.telekom.sea.Test_Exceptions" />
       <module name="SEAKurs" />
       <extension name="coverage">
         <pattern>
@@ -181,6 +191,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
@@ -233,25 +244,14 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsList.java</url>
-          <line>155</line>
-          <option name="timeStamp" value="22" />
+          <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsListReader.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="87" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsList.java</url>
-          <line>156</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/PersonsList.java</url>
-          <line>157</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/de/telekom/sea/SeminarApp.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassCastException" package="java.lang" />
+          <option name="timeStamp" value="88" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

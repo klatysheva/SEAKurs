@@ -1,11 +1,12 @@
 package de.telekom.sea;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SeminarApp extends BaseObject {
 
     //public void run (PersonsList list, ArrayList<IEventListener> listenerList) {
-    public void run (PersonsList list, IEventListener eventListener) {
+    public void run (PersonsList list, IEventListener eventListener) throws IOException {
         //for test only:
         Person person1 = new Person("Antony", "Smith");
         Person person2 = new Person("Walker", "Antony");

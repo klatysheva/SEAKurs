@@ -12,6 +12,12 @@ public class Person extends BaseObject {
         this.surname = surname;
     }
 
+    public Person(Long id, String surname, String name) {
+        super(id);
+        this.name = name;
+        this.surname = surname;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
