@@ -7,14 +7,12 @@ import java.util.Scanner;
 public class PersonsListReader {
     private PersonReader personReader;
     private FileReader fileReader;
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_BLUE = "\u001B[34m";
     private int listSize;
 
     public PersonsListReader(FileReader fileReader, Scanner scanner) {
         this.fileReader = fileReader;
         this.personReader = new PersonReader(fileReader, scanner);
-        System.out.println(ANSI_BLUE + "Please input max count of persons in your list:" + ANSI_RESET);
+        System.out.println(Color.ANSI_BLUE + "Please input max count of persons in your list:" + Color.ANSI_RESET);
         this.listSize = scanner.nextInt();
 
     }

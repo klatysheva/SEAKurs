@@ -7,12 +7,6 @@ import java.util.Scanner;
 public class SearchOptionsMenu extends BaseObject implements IMenu {
     private String searchOption;
     Scanner scanner = new Scanner(System.in);
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_GREY = "\u001B[37m";
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_BLUE = "\u001B[34m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
 
     public SearchOptionsMenu(String searchOption) {
         this.searchOption = searchOption;
@@ -60,11 +54,11 @@ public class SearchOptionsMenu extends BaseObject implements IMenu {
     }
 
     private void showMenu() {
-        System.out.println(ANSI_BLUE + "Select search option: " + ANSI_GREEN);
+        System.out.println(Color.ANSI_BLUE + "Select search option: " + Color.ANSI_GREEN);
         System.out.println("1 - contains;");
         System.out.println("2 - startWith;");
         System.out.println("If you input any other character current option will be kept.");
-        System.out.println(ANSI_RESET);
+        System.out.println(Color.ANSI_RESET);
     }
 
     public String inputLine() {

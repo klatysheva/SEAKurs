@@ -8,12 +8,6 @@ import java.util.Scanner;
 public class PersonSearchMenu extends BaseObject implements IMenu, IEventListener {
     private IList list;
     Scanner scanner = new Scanner(System.in);
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_GREY = "\u001B[37m";
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_BLUE = "\u001B[34m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
 
     public PersonSearchMenu(IList list) {
         this.list = list;
@@ -40,11 +34,11 @@ public class PersonSearchMenu extends BaseObject implements IMenu, IEventListene
     }
 
     private void showMenu() {
-        System.out.println(ANSI_BLUE + "Please select search option:" + ANSI_GREEN);
+        System.out.println(Color.ANSI_BLUE + "Please select search option:" + Color.ANSI_GREEN);
         System.out.println("1 - search by text (in name and surname)");
         System.out.println("2 - <option is in work>");
         System.out.println("0 - abort search;");
-        System.out.println(ANSI_RESET);
+        System.out.println(Color.ANSI_RESET);
     }
 
     public String checkMenu() {
@@ -105,13 +99,13 @@ public class PersonSearchMenu extends BaseObject implements IMenu, IEventListene
     }
 
     private void showSearchSettings(String searchOption, boolean isCaseSensitive) {
-        System.out.println(ANSI_YELLOW + "Current settings: " + ANSI_RESET + searchOption + " option, isCaseSensitive = " + isCaseSensitive + ".");
+        System.out.println(Color.ANSI_YELLOW + "Current settings: " + Color.ANSI_RESET + searchOption + " option, isCaseSensitive = " + isCaseSensitive + ".");
     }
 
     private boolean changeCaseSensitiveMode() {
         boolean isCaseSensitive;
-        System.out.println(ANSI_BLUE + "To deactivate case sensitive mode please input '1'.");
-        System.out.println("Otherwise input any character (case sensitive option will be used by default)." + ANSI_RESET);
+        System.out.println(Color.ANSI_BLUE + "To deactivate case sensitive mode please input '1'.");
+        System.out.println("Otherwise input any character (case sensitive option will be used by default)." + Color.ANSI_RESET);
         if (inputLine().equals("1")) {
             isCaseSensitive = false;
             System.out.println("Case insensitive mode activated.");

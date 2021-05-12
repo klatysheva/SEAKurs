@@ -9,12 +9,6 @@ import java.util.Scanner;
 public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Closeable {
     private IList list;
     Scanner scanner = new Scanner(System.in);
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_GREY = "\u001B[37m";
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_BLUE = "\u001B[34m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
 
     public PersonsMenu(IList list) {
         this.list = list;
@@ -32,17 +26,17 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
     }
 
     public void showMenu() {
-        System.out.println(ANSI_BLUE + "Select option:" + ANSI_GREEN);
+        System.out.println(Color.ANSI_BLUE + "Select option:" + Color.ANSI_GREEN);
         if (list.isFull()) {
-            System.out.println(ANSI_GREY + "1 - (NOT ACTIVE) input person" + ANSI_GREEN);
+            System.out.println(Color.ANSI_GREY + "1 - (NOT ACTIVE) input person" + Color.ANSI_GREEN);
         } else {
             System.out.println("1 - input person");
         }
         System.out.println("2 - show occupied places");
         System.out.println("3 - show free places");
         if (list.isEmpty()) {
-            System.out.println(ANSI_GREY + "4 - (NOT ACTIVE) remove person by its index or name&surname");
-            System.out.println("5 - (NOT ACTIVE) remove all" + ANSI_GREEN);
+            System.out.println(Color.ANSI_GREY + "4 - (NOT ACTIVE) remove person by its index or name&surname");
+            System.out.println("5 - (NOT ACTIVE) remove all" + Color.ANSI_GREEN);
         } else {
             System.out.println("4 - remove person by its index or name&surname");
             System.out.println("5 - remove all");
@@ -52,7 +46,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         System.out.println("8 - save list of all persons to a file .sea");
         System.out.println("9 - import list");
         System.out.println("0 - exit");
-        System.out.println(ANSI_RESET);
+        System.out.println(Color.ANSI_RESET);
 
     }
 
@@ -124,7 +118,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
                 try {
                     readList();
                 } catch (IOException e) {
-                    System.out.println(ANSI_RED + "Error: file not found." + ANSI_RESET);
+                    System.out.println(Color.ANSI_RED + "Error: file not found." + Color.ANSI_RESET);
                 }
                 break;
             case "0":
@@ -234,7 +228,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
     }
 
     public void readList() throws IOException {
-        System.out.println(ANSI_BLUE + "Please input file name (should be in 'src/test/resources/' folder). Example: mylist.csv"+ ANSI_RESET);
+        System.out.println(Color.ANSI_BLUE + "Please input file name (should be in 'src/test/resources/' folder). Example: mylist.csv"+ Color.ANSI_RESET);
         System.out.println("Please notice: expected person's format id|surname|name");
         String inputFileName = "src/test/resources/" + inputLine();
         try (FileReader fileReader = new FileReader(inputFileName)) {

@@ -5,15 +5,13 @@ import java.util.Scanner;
 
 public class PersonReader {
 
-    private String separator = ";";
+    private String separator;
     private FileReader fileReader;
     private Person person;
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_BLUE = "\u001B[34m";
 
     public PersonReader (FileReader fileReader, Scanner scanner)  {
         this.fileReader = fileReader;
-        System.out.println(ANSI_BLUE + "Please input separator:" + ANSI_RESET);
+        System.out.println(Color.ANSI_BLUE + "Please input separator:" + Color.ANSI_RESET);
         this.separator = scanner.nextLine();
     }
 
