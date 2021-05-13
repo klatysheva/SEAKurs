@@ -141,10 +141,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         String surname = scanner.nextLine();
         System.out.println("Enter salutation: ");
         String salutation = scanner.nextLine();
-        Person person = new Person();
-        person.setName(name);
-        person.setSurname(surname);
-        person.setSalutation(Salutation.fromString(salutation));
+        Person person = new Person(Salutation.fromString(salutation), surname, name);
         System.out.println("############### Add person #########################");
         list.add(person);
         //should be deleted when listeners are fixed:

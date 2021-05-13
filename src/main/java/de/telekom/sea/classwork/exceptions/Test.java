@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) throws SomeException, WrongIndexException {
-        Person person1 = new Person("Antony", "Walker");
-        Person person2 = new Person("Alex", "Anderson");
+        Person person1 = new Person("Mr", "Antony", "Walker");
+        Person person2 = new Person("Mister", "Alex", "Anderson");
 
         PersonsList list1 = new PersonsList(2); //implements IList, IEventRegistration
 

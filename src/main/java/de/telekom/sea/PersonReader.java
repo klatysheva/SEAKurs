@@ -24,7 +24,7 @@ public class PersonReader {
             String name = splitLine[3];
             try {
                 Long id = Long.parseLong(splitLine[0]);
-                person = new Person(salutationEnum, id, surname, name);
+                person = new Person(id, salutationEnum, surname, name);
             } catch (NumberFormatException nfe) {
                 person = new Person(surname, name);
                 System.out.println("NumberFormatException: wrong id format. New id was assigned for " + person.getSurname() + " " + person.getName() + ": "+ person.getId() + ".");

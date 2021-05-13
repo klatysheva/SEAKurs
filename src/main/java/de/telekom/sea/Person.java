@@ -5,9 +5,6 @@ public class Person extends BaseObject {
     private String surname;
     private Salutation salutation;
 
-    public Person() {
-    }
-
     public Person(String surname, String name) {
         this.name = name;
         this.surname = surname;
@@ -19,17 +16,30 @@ public class Person extends BaseObject {
         this.name = name;
     }
 
+    public Person(String salutation, String surname, String name) {
+        this.salutation = Salutation.fromString(salutation);
+        this.surname = surname;
+        this.name = name;
+    }
+
     public Person(Long id, String surname, String name) {
         super(id);
         this.name = name;
         this.surname = surname;
     }
 
-    public Person(Salutation salutation, Long id, String surname, String name) {
+    public Person(Long id, Salutation salutation, String surname, String name) {
         super(id);
         this.name = name;
         this.surname = surname;
         this.salutation = salutation;
+    }
+
+    public Person(Long id, String salutation, String surname, String name) {
+        super(id);
+        this.salutation = Salutation.fromString(salutation);
+        this.surname = surname;
+        this.name = name;
     }
 
     public void setName(String name) {
