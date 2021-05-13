@@ -25,7 +25,8 @@ public class PersonsListReader {
             while (line != null) {
                 if (!line.isEmpty()) {
                     //arrayList.add(personReader.read(line));
-                    persons.add(personReader.read(line));
+                    Object read = personReader.read(line);
+                    persons.add(read);
                 }
                 line = bufferedReader.readLine();
             }

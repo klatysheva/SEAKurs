@@ -18,11 +18,13 @@ public class PersonReader {
     public Object read(String line) throws WrongIdException{
         if (!line.isEmpty()) {
             String[] splitLine= line.split(separator);
-            String surname = splitLine[1];
-            String name = splitLine[2];
+            String salutation = splitLine[1];
+            Salutation salutationEnum = Salutation.fromString(salutation);
+            String surname = splitLine[2];
+            String name = splitLine[3];
             try {
                 Long id = Long.parseLong(splitLine[0]);
-                person = new Person(id, surname, name);
+                person = new Person(salutationEnum, id, surname, name);
             } catch (NumberFormatException nfe) {
                 person = new Person(surname, name);
                 System.out.println("NumberFormatException: wrong id format. New id was assigned for " + person.getSurname() + " " + person.getName() + ": "+ person.getId() + ".");

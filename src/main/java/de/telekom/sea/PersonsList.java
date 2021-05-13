@@ -21,6 +21,7 @@ public class PersonsList extends BaseObject implements IList, IEventRegistration
     public void subscribe(IEventListener eventListener){
         //listenerList.add(eventListener);
         this.eventListener = eventListener;
+        sendEvent("subscriptionAdded","Subscription added.");
     }
 
 //    public void unsubscribeAll(){

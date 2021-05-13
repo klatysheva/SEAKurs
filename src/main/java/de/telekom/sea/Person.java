@@ -3,13 +3,20 @@ package de.telekom.sea;
 public class Person extends BaseObject {
     private String name;
     private String surname;
+    private Salutation salutation;
 
     public Person() {
     }
 
-    public Person(String name, String surname) {
+    public Person(String surname, String name) {
         this.name = name;
         this.surname = surname;
+    }
+
+    public Person(Salutation salutation, String surname, String name) {
+        this.salutation = salutation;
+        this.surname = surname;
+        this.name = name;
     }
 
     public Person(Long id, String surname, String name) {
@@ -18,18 +25,35 @@ public class Person extends BaseObject {
         this.surname = surname;
     }
 
+    public Person(Salutation salutation, Long id, String surname, String name) {
+        super(id);
+        this.name = name;
+        this.surname = surname;
+        this.salutation = salutation;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public void setSalutation(Salutation salutation) {
+        this.salutation = salutation;
     }
 
     public String getName() {
         return name;
     }
+
     public String getSurname() {
         return surname;
+    }
+
+    public Salutation getSalutation() {
+        return salutation;
     }
 
     @Override
@@ -44,6 +68,6 @@ public class Person extends BaseObject {
             return false;
         }
         Person person = (Person) obj; // cast to Person
-        return (person.getName().equals(this.name) && person.getSurname().equals(this.surname));
+        return (person.getName().equals(this.name) && person.getSurname().equals(this.surname) && person.getSalutation().equals(this.salutation));
     }
 }

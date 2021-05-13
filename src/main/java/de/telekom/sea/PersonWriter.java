@@ -11,7 +11,7 @@ public class PersonWriter {
     }
 
     void write(Person person) throws IOException {
-        fileWriter.write(String.format("%s;%s;%s\n", person.getId().toString(), person.getSurname(), person.getName()));
+        fileWriter.write(String.format("%s;%s;%s;%s\n", person.getId().toString(), person.getSalutation().toString(), person.getSurname(), person.getName()));
 
     }
 

@@ -15,7 +15,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
     }
 
     public void receive(Event event) {
-        System.out.println("Event: " + event.description);
+        System.out.println(Color.ANSI_PURPLE + "Event: " + event.description + Color.ANSI_RESET);
         System.out.println();
         showList();
     }
@@ -43,7 +43,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
             System.out.println("6 - search");
         }
         System.out.println("7 - list all persons");
-        System.out.println("8 - save list of all persons to a file .sea");
+        System.out.println("8 - save list of all persons to a file.");
         System.out.println("9 - import list");
         System.out.println("0 - exit");
         System.out.println(Color.ANSI_RESET);
@@ -106,7 +106,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
                 personSearchMenu.selectOption();
                 break;
             case "7":
-                System.out.println("7. List all persons.");
+                System.out.println("7. Shoe list of all persons.");
                 showList();
                 break;
             case "8":
@@ -139,9 +139,12 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
         String name = scanner.nextLine();
         System.out.println("Enter surname: ");
         String surname = scanner.nextLine();
+        System.out.println("Enter salutation: ");
+        String salutation = scanner.nextLine();
         Person person = new Person();
         person.setName(name);
         person.setSurname(surname);
+        person.setSalutation(Salutation.fromString(salutation));
         System.out.println("############### Add person #########################");
         list.add(person);
         //should be deleted when listeners are fixed:
@@ -189,7 +192,7 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
                 Object obj = list.get(i);
                 if (obj != null) {
                     Person person = (Person) obj;
-                    System.out.println((i + 1) + ". " + person.getSurname() + " " + person.getName());
+                    System.out.println((i + 1) + ". " + person.getSalutation() + " " + person.getSurname() + " " + person.getName());
                 }
             } catch (WrongIndexException e) {
                 e.printStackTrace();
@@ -236,6 +239,5 @@ public class PersonsMenu extends BaseObject implements IMenu, IEventListener, Cl
             setList(personsListReader.read());
             showList();
         }
-
     }
 }
